@@ -39,6 +39,29 @@ public class PB2_5 {
 
     }
 
+    public static LinkedListNode addReverseLinkedList(LinkedListNode ll1, LinkedListNode ll2, int sum){
+        LinkedListNode rll1 = reverseLinkedList(ll1);
+        LinkedListNode rll2 = reverseLinkedList(ll2);
+        return addLinkedList(rll1, rll2, sum);
+    }
+
+    public static LinkedListNode reverseLinkedList(LinkedListNode head){
+        LinkedListNode pre = null;
+        LinkedListNode current = head;
+        LinkedListNode next = head.next;
+
+        while(next != null){
+            current.next = pre;
+            pre = current;
+            current = next;
+            next = next.next;
+        }
+
+        current.next = pre;
+
+        return current;
+    }
+
     public static int transferLinkedLintToInteger(LinkedListNode head){
         int value = 0;
         if(head.next != null){
@@ -68,5 +91,29 @@ public class PB2_5 {
 
         System.out.print(l1 + " + " + l2 + " = " + l3 + "\n");
         System.out.print(l1 + " + " + l2 + " = " + (l1 + l2));
+        System.out.println();
+        System.out.println();
+
+        /* FOLLOW UP, reverse LinkedList Addition */
+
+        LinkedListNode rlA1 = reverseLinkedList(lA3);
+        LinkedListNode rlB1 = reverseLinkedList(lB3);
+        //System.out.println(rlB1.printForward());
+
+        LinkedListNode rresult = addLinkedList(rlA1, rlB1, 0);
+        //System.out.println(rresult.printForward());
+
+        System.out.println("  " + rlA1.printForward());
+        System.out.println("+ " + rlB1.printForward());
+        System.out.println("= " + rresult.printForward());
+
+        int rl1 = transferLinkedLintToInteger(rlA1);
+        int rl2 = transferLinkedLintToInteger(rlB1);
+        int rl3 = transferLinkedLintToInteger(rresult);
+
+        System.out.print(rl1 + " + " + rl2 + " = " + rl3 + "\n");
+        System.out.print(rl1 + " + " + rl2 + " = " + (rl1 + rl2));
+        System.out.println();
+
     }
 }
